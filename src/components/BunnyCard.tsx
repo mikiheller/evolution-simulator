@@ -20,11 +20,12 @@ function getBunnyStyle(traits: BunnyTraits) {
   const animationDuration = 2 - (traits.speed / 100) * 1.5;
   
   // Camouflage affects color: high = white (snow), low = brown (stands out)
-  const camoRatio = traits.camouflage / 100;
-  // Interpolate from brown (#8B7355) to white (#FAFAFA)
+  // 80+ camouflage = fully white, below 80 = gradient from brown to white
+  const camoRatio = Math.min(traits.camouflage / 80, 1); // Reaches white at 80
+  // Interpolate from brown (#8B6914) to white (#FAFAFA)
   const r = Math.round(139 + (250 - 139) * camoRatio);
-  const g = Math.round(115 + (250 - 115) * camoRatio);
-  const b = Math.round(85 + (250 - 85) * camoRatio);
+  const g = Math.round(105 + (250 - 105) * camoRatio);
+  const b = Math.round(20 + (250 - 20) * camoRatio);
   const bodyColor = `rgb(${r}, ${g}, ${b})`;
   
   // Ear inner color: pink tint
