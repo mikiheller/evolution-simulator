@@ -155,16 +155,46 @@ function App() {
           <div className="intro-content">
             <div className="intro-bunny">🐇</div>
             <h2>Welcome to the Arctic!</h2>
-            <p>
-              In this game, you'll see how bunnies <strong>evolve</strong> over time!
+            <p className="intro-tagline">
+              Learn how animals change over time through <strong>evolution!</strong>
             </p>
-            <p>
-              Each bunny has special traits like thick fur, speed, and camouflage.
-              When tough times come, bunnies with the right traits survive and have babies.
-            </p>
-            <p>
-              Over many generations, the bunny family changes - this is called <strong>evolution by natural selection!</strong>
-            </p>
+            
+            <div className="vocab-section">
+              <h3>🧬 Key Words to Know</h3>
+              
+              <div className="vocab-grid">
+                <div className="vocab-card">
+                  <span className="vocab-emoji">🔄</span>
+                  <span className="vocab-term">Evolution</span>
+                  <span className="vocab-def">When a group of animals slowly changes over many, many generations</span>
+                </div>
+                
+                <div className="vocab-card">
+                  <span className="vocab-emoji">👨‍👩‍👧</span>
+                  <span className="vocab-term">Inheritance</span>
+                  <span className="vocab-def">Babies get traits from their parents - like fur color or how fast they can run!</span>
+                </div>
+                
+                <div className="vocab-card">
+                  <span className="vocab-emoji">🎲</span>
+                  <span className="vocab-term">Variation</span>
+                  <span className="vocab-def">Not every bunny is the same! Some are faster, some have thicker fur</span>
+                </div>
+                
+                <div className="vocab-card">
+                  <span className="vocab-emoji">🎯</span>
+                  <span className="vocab-term">Selection</span>
+                  <span className="vocab-def">Nature "picks" which animals survive based on their traits and the environment</span>
+                </div>
+                
+                <div className="vocab-card">
+                  <span className="vocab-emoji">💪</span>
+                  <span className="vocab-term">Survival of the Fittest</span>
+                  <span className="vocab-def">Animals with the best traits for their environment survive and have more babies!</span>
+                </div>
+              </div>
+            </div>
+            
             <motion.button 
               className="start-button"
               onClick={startGame}
