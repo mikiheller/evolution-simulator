@@ -37,15 +37,17 @@ function getRandomName(): string {
 }
 
 // Create a new random bunny
+// TUNED FOR KIDS: Wider initial spread so selection is dramatic!
 export function createRandomBunny(generation: number = 1): Bunny {
   return {
     id: generateId(),
     name: getRandomName(),
     traits: {
-      furThickness: randomTrait(50, 15),
-      speed: randomTrait(50, 15),
-      size: randomTrait(50, 15),
-      camouflage: randomTrait(50, 15)
+      // Start with wide spread (variance 22) so some bunnies are clearly better/worse
+      furThickness: randomTrait(50, 22),
+      speed: randomTrait(50, 22),
+      size: randomTrait(50, 22),
+      camouflage: randomTrait(50, 22)
     },
     generation,
     isAlive: true
@@ -53,10 +55,11 @@ export function createRandomBunny(generation: number = 1): Bunny {
 }
 
 // Create offspring from a parent bunny with inherited traits + variation
+// TUNED FOR KIDS: Tighter inheritance so evolution is clearly visible!
 export function createOffspring(parent: Bunny, generation: number): Bunny {
-  const mutationChance = 0.3; // 30% chance for significant mutation
-  const normalVariance = 8;   // Normal inheritance variance
-  const mutationVariance = 20; // Mutation variance
+  const mutationChance = 0.15; // 15% chance for mutation (was 30%)
+  const normalVariance = 5;    // Tight inheritance - kids stay close to parents (was 8)
+  const mutationVariance = 12; // Smaller mutations (was 20)
   
   const inheritTrait = (parentValue: number): number => {
     const isMutation = Math.random() < mutationChance;

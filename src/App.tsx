@@ -39,6 +39,7 @@ function App() {
     setMessage(`${event.emoji} ${event.name}! Let's see which bunnies survive...`);
     
     // Apply survival logic after a short delay
+    // TUNED FOR KIDS: Stronger selection pressure so evolution is clearly visible!
     setTimeout(() => {
       setBunnies(currentBunnies => {
         const updatedBunnies = currentBunnies.map(bunny => {
@@ -56,16 +57,16 @@ function App() {
           
           if (event.traitDirection === 'low') {
             // Low trait is dangerous (e.g., thin fur in cold)
-            // Higher trait = better survival
-            survivalChance = 0.2 + (traitValue / 100) * 0.7;
+            // STRONG selection: trait 0 = 5% survival, trait 100 = 98% survival
+            survivalChance = 0.05 + (traitValue / 100) * 0.93;
           } else {
             // High trait is dangerous (e.g., big size in food shortage)
             // Lower trait = better survival
-            survivalChance = 0.2 + ((100 - traitValue) / 100) * 0.7;
+            survivalChance = 0.05 + ((100 - traitValue) / 100) * 0.93;
           }
           
-          // Add some randomness
-          survivalChance = Math.min(0.95, Math.max(0.1, survivalChance + (Math.random() - 0.5) * 0.2));
+          // Much less randomness - only ±5% variation (was ±10%)
+          survivalChance = Math.min(0.98, Math.max(0.05, survivalChance + (Math.random() - 0.5) * 0.1));
           
           return { ...bunny, isAlive: Math.random() < survivalChance };
         });
