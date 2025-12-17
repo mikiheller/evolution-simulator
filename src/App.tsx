@@ -39,34 +39,35 @@ function App() {
     setMessage(`${event.emoji} ${event.name}! Let's see which bunnies survive...`);
     
     // Apply survival logic after a short delay
-    // TUNED FOR KIDS: Stronger selection pressure so evolution is clearly visible!
+    // TUNED FOR KIDS: Very strong, nearly deterministic selection!
     setTimeout(() => {
       setBunnies(currentBunnies => {
+        // Sort bunnies by the relevant trait to find the "cutoff"
+        const aliveBunnies = currentBunnies.filter(b => b.isAlive);
+        
         const updatedBunnies = currentBunnies.map(bunny => {
           if (!bunny.isAlive) return bunny;
           
           // Mild year - almost everyone survives
           if (eventId === 'mild_year') {
-            const survivalChance = 0.95;
-            return { ...bunny, isAlive: Math.random() < survivalChance };
+            return { ...bunny, isAlive: Math.random() < 0.95 };
           }
           
-          // Calculate survival based on relevant trait
-          const traitValue = bunny.traits[event.dangerousTrait];
-          let survivalChance: number;
-          
-          if (event.traitDirection === 'low') {
-            // Low trait is dangerous (e.g., thin fur in cold)
-            // STRONG selection: trait 0 = 5% survival, trait 100 = 98% survival
-            survivalChance = 0.05 + (traitValue / 100) * 0.93;
-          } else {
-            // High trait is dangerous (e.g., big size in food shortage)
-            // Lower trait = better survival
-            survivalChance = 0.05 + ((100 - traitValue) / 100) * 0.93;
+          // Get trait value (flip for "high is bad" events)
+          let effectiveTrait = bunny.traits[event.dangerousTrait];
+          if (event.traitDirection === 'high') {
+            effectiveTrait = 100 - effectiveTrait;
           }
           
-          // Much less randomness - only ±5% variation (was ±10%)
-          survivalChance = Math.min(0.98, Math.max(0.05, survivalChance + (Math.random() - 0.5) * 0.1));
+          // VERY STRONG SELECTION using sigmoid curve
+          // This creates a sharp cutoff around trait value 50
+          // Below 30: almost certain death
+          // Above 70: almost certain survival
+          // The steepness (0.15) controls how sharp the cutoff is
+          const sigmoid = 1 / (1 + Math.exp(-0.15 * (effectiveTrait - 50)));
+          
+          // Scale to range: 2% survival at bottom, 98% at top
+          const survivalChance = 0.02 + sigmoid * 0.96;
           
           return { ...bunny, isAlive: Math.random() < survivalChance };
         });

@@ -55,11 +55,11 @@ export function createRandomBunny(generation: number = 1): Bunny {
 }
 
 // Create offspring from a parent bunny with inherited traits + variation
-// TUNED FOR KIDS: Tighter inheritance so evolution is clearly visible!
+// TUNED FOR KIDS: Very tight inheritance so evolution is clearly visible!
 export function createOffspring(parent: Bunny, generation: number): Bunny {
-  const mutationChance = 0.15; // 15% chance for mutation (was 30%)
-  const normalVariance = 5;    // Tight inheritance - kids stay close to parents (was 8)
-  const mutationVariance = 12; // Smaller mutations (was 20)
+  const mutationChance = 0.10; // 10% chance for mutation - rare!
+  const normalVariance = 3;    // Very tight - kids are almost like parents
+  const mutationVariance = 8;  // Even mutations are small
   
   const inheritTrait = (parentValue: number): number => {
     const isMutation = Math.random() < mutationChance;
