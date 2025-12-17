@@ -18,6 +18,7 @@ function App() {
   const [currentEvent, setCurrentEvent] = useState<EnvironmentEvent | null>(null);
   const [history, setHistory] = useState<PopulationStatsType[]>([]);
   const [message, setMessage] = useState<string>('');
+  const [totalSurvived, setTotalSurvived] = useState(0);
   const [totalLost, setTotalLost] = useState(0);
 
   // Start the game
@@ -26,6 +27,7 @@ function App() {
     setBunnies(initialPopulation);
     setGeneration(1);
     setHistory([]);
+    setTotalSurvived(0);
     setTotalLost(0);
     setPhase('select_event');
     setMessage('Meet your bunny family! Choose what challenge they will face this year.');
@@ -65,11 +67,14 @@ function App() {
           return { ...bunny, isAlive: Math.random() < survivalChance };
         });
         
-        // Count deaths and update total
-        const deaths = updatedBunnies.filter(b => !b.isAlive).length - currentBunnies.filter(b => !b.isAlive).length;
-        if (deaths > 0) {
-          setTotalLost(prev => prev + deaths);
-        }
+        // Count survivors and deaths from this round
+        const aliveBeforeCount = currentBunnies.filter(b => b.isAlive).length;
+        const aliveAfterCount = updatedBunnies.filter(b => b.isAlive).length;
+        const deaths = aliveBeforeCount - aliveAfterCount;
+        
+        // Update totals
+        setTotalSurvived(prev => prev + aliveAfterCount);
+        setTotalLost(prev => prev + deaths);
         
         return updatedBunnies;
       });
@@ -179,6 +184,7 @@ function App() {
               bunnies={bunnies} 
               generation={generation}
               history={history}
+              totalSurvived={totalSurvived}
               totalLost={totalLost}
             />
           </aside>

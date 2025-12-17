@@ -7,6 +7,7 @@ interface PopulationStatsProps {
   bunnies: Bunny[];
   generation: number;
   history: PopulationStatsType[];
+  totalSurvived: number;
   totalLost: number;
 }
 
@@ -18,7 +19,7 @@ const TRAIT_COLORS = {
   camouflage: '#f472b6'    // pink
 };
 
-export function PopulationStats({ bunnies, generation, history, totalLost }: PopulationStatsProps) {
+export function PopulationStats({ bunnies, generation, history, totalSurvived, totalLost }: PopulationStatsProps) {
   const aliveBunnies = bunnies.filter(b => b.isAlive);
   const averageTraits = calculateAverageTraits(aliveBunnies);
   
@@ -38,9 +39,9 @@ export function PopulationStats({ bunnies, generation, history, totalLost }: Pop
     );
   };
 
-  // Calculate total bunnies that have ever lived
-  const totalBorn = aliveBunnies.length + totalLost;
-  const survivalRate = totalBorn > 0 ? Math.round((aliveBunnies.length / totalBorn) * 100) : 100;
+  // Calculate survival rate from cumulative totals
+  const totalFaced = totalSurvived + totalLost;
+  const survivalRate = totalFaced > 0 ? Math.round((totalSurvived / totalFaced) * 100) : 100;
   
   return (
     <motion.div 
@@ -58,14 +59,14 @@ export function PopulationStats({ bunnies, generation, history, totalLost }: Pop
       
       <div className="stats-overview">
         <div className="stat-item">
-          <span className="stat-icon">🐣</span>
-          <span className="stat-value">{totalBorn}</span>
-          <span className="stat-label">Total Born</span>
+          <span className="stat-icon">✅</span>
+          <span className="stat-value">{totalSurvived}</span>
+          <span className="stat-label">Survived</span>
         </div>
         <div className="stat-item">
           <span className="stat-icon">😇</span>
           <span className="stat-value">{totalLost}</span>
-          <span className="stat-label">Total Lost</span>
+          <span className="stat-label">Lost</span>
         </div>
       </div>
       
