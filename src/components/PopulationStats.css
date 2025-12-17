@@ -152,6 +152,12 @@
   font-weight: 600;
 }
 
+.trait-hint {
+  font-size: 0.65rem;
+  opacity: 0.6;
+  font-weight: 400;
+}
+
 .change-indicator {
   font-size: 0.75rem;
   font-weight: 700;

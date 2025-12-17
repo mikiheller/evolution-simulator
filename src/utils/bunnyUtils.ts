@@ -113,7 +113,18 @@ export function calculateAverageTraits(bunnies: Bunny[]): BunnyTraits {
 }
 
 // Get trait rating for display
-export function getTraitRating(value: number): { label: string; color: string } {
+// For most traits: high = good. For size: low = good (small bunnies need less food)
+export function getTraitRating(value: number, trait?: keyof BunnyTraits): { label: string; color: string } {
+  // Size is inverted - small (low value) is good!
+  if (trait === 'size') {
+    if (value <= 20) return { label: 'Tiny!', color: '#22c55e' };
+    if (value <= 40) return { label: 'Small', color: '#84cc16' };
+    if (value <= 60) return { label: 'Medium', color: '#eab308' };
+    if (value <= 80) return { label: 'Large', color: '#f97316' };
+    return { label: 'Huge!', color: '#ef4444' };
+  }
+  
+  // Normal traits - high = good
   if (value >= 80) return { label: 'Amazing!', color: '#22c55e' };
   if (value >= 60) return { label: 'Good', color: '#84cc16' };
   if (value >= 40) return { label: 'Average', color: '#eab308' };
@@ -126,7 +137,7 @@ export function getTraitEmoji(trait: keyof BunnyTraits): string {
   switch (trait) {
     case 'furThickness': return '🧥';
     case 'speed': return '⚡';
-    case 'size': return '📏';
+    case 'size': return '🐰';  // Changed to bunny emoji
     case 'camouflage': return '👻';
   }
 }
@@ -136,7 +147,7 @@ export function getTraitName(trait: keyof BunnyTraits): string {
   switch (trait) {
     case 'furThickness': return 'Fur Warmth';
     case 'speed': return 'Speed';
-    case 'size': return 'Size';
+    case 'size': return 'Size';  // Keep as Size but ratings explain it
     case 'camouflage': return 'Camouflage';
   }
 }

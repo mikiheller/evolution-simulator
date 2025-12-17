@@ -1,7 +1,15 @@
 import { motion } from 'framer-motion';
 import type { Bunny, PopulationStats as PopulationStatsType } from '../types/bunny';
+import { ENVIRONMENT_EVENTS } from '../types/bunny';
 import { calculateAverageTraits, getTraitEmoji, getTraitName, getTraitRating } from '../utils/bunnyUtils';
 import './PopulationStats.css';
+
+// Get emoji for an event
+function getEventEmoji(eventId: string | undefined): string {
+  if (!eventId) return '';
+  const event = ENVIRONMENT_EVENTS.find(e => e.id === eventId);
+  return event?.emoji || '';
+}
 
 interface PopulationStatsProps {
   bunnies: Bunny[];
@@ -93,7 +101,7 @@ export function PopulationStats({ bunnies, generation, history, totalSurvived, t
         
         {traits.map(trait => {
           const value = averageTraits[trait];
-          const rating = getTraitRating(value);
+          const rating = getTraitRating(value, trait);
           const previousValue = previousStats?.averageTraits[trait];
           
           return (
@@ -101,6 +109,7 @@ export function PopulationStats({ bunnies, generation, history, totalSurvived, t
               <div className="trait-header">
                 <span className="trait-icon">{getTraitEmoji(trait)}</span>
                 <span className="trait-title">{getTraitName(trait)}</span>
+                {trait === 'size' && <span className="trait-hint">(smaller=better)</span>}
                 {getChangeIndicator(value, previousValue)}
               </div>
               <div className="trait-bar-container">
@@ -147,7 +156,9 @@ export function PopulationStats({ bunnies, generation, history, totalSurvived, t
                     />
                   ))}
                 </div>
-                <span className="history-label-compact">Gen {stats.generation}</span>
+                <span className="history-label-compact">
+                  {stats.generation} {getEventEmoji(stats.event)}
+                </span>
               </div>
             ))}
           </div>

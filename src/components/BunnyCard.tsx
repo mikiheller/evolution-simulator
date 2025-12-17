@@ -16,23 +16,35 @@ function getBunnyStyle(traits: BunnyTraits) {
   // Fur thickness affects how fluffy they look (border-radius and shadow)
   const fluffiness = traits.furThickness / 100;
   
-  // Camouflage affects opacity (better camo = more transparent)
-  const opacity = 0.6 + (1 - traits.camouflage / 100) * 0.4;
-  
   // Speed affects animation speed
   const animationDuration = 2 - (traits.speed / 100) * 1.5;
+  
+  // Camouflage affects color: high = white (snow), low = brown (stands out)
+  const camoRatio = traits.camouflage / 100;
+  // Interpolate from brown (#8B7355) to white (#FAFAFA)
+  const r = Math.round(139 + (250 - 139) * camoRatio);
+  const g = Math.round(115 + (250 - 115) * camoRatio);
+  const b = Math.round(85 + (250 - 85) * camoRatio);
+  const bodyColor = `rgb(${r}, ${g}, ${b})`;
+  
+  // Ear inner color: pink tint
+  const earR = Math.round(180 + (255 - 180) * camoRatio);
+  const earG = Math.round(140 + (200 - 140) * camoRatio);
+  const earB = Math.round(130 + (200 - 130) * camoRatio);
+  const earColor = `rgb(${earR}, ${earG}, ${earB})`;
   
   return {
     width: size,
     height: size * 0.8,
-    opacity,
     animationDuration,
-    fluffiness
+    fluffiness,
+    bodyColor,
+    earColor
   };
 }
 
 function TraitBar({ trait, value }: { trait: keyof BunnyTraits; value: number }) {
-  const rating = getTraitRating(value);
+  const rating = getTraitRating(value, trait);
   
   return (
     <div className="trait-bar">
@@ -71,7 +83,7 @@ export function BunnyCard({ bunny, showDetails = true }: BunnyCardProps) {
           style={{
             width: style.width,
             height: style.height,
-            opacity: bunny.isAlive ? style.opacity : 0.3,
+            opacity: bunny.isAlive ? 1 : 0.3,
             boxShadow: `0 0 ${style.fluffiness * 20}px ${style.fluffiness * 10}px rgba(255,255,255,${style.fluffiness * 0.5})`
           }}
           animate={{
@@ -83,17 +95,17 @@ export function BunnyCard({ bunny, showDetails = true }: BunnyCardProps) {
             ease: "easeInOut"
           }}
         >
-          <div className="bunny-body">
-            <div className="bunny-ear left" style={{ height: 20 + style.fluffiness * 15 }} />
-            <div className="bunny-ear right" style={{ height: 20 + style.fluffiness * 15 }} />
+          <div className="bunny-body" style={{ background: `linear-gradient(180deg, ${style.bodyColor} 0%, ${style.bodyColor} 100%)` }}>
+            <div className="bunny-ear left" style={{ height: 20 + style.fluffiness * 15, background: `linear-gradient(180deg, ${style.bodyColor} 0%, ${style.bodyColor} 100%)`, '--ear-inner': style.earColor } as React.CSSProperties} />
+            <div className="bunny-ear right" style={{ height: 20 + style.fluffiness * 15, background: `linear-gradient(180deg, ${style.bodyColor} 0%, ${style.bodyColor} 100%)`, '--ear-inner': style.earColor } as React.CSSProperties} />
             <div className="bunny-face">
               <div className="bunny-eye left" />
               <div className="bunny-eye right" />
               <div className="bunny-nose" />
             </div>
             <div className="bunny-feet">
-              <div className="bunny-foot" />
-              <div className="bunny-foot" />
+              <div className="bunny-foot" style={{ background: style.bodyColor }} />
+              <div className="bunny-foot" style={{ background: style.bodyColor }} />
             </div>
           </div>
           {!bunny.isAlive && <div className="bunny-halo">😇</div>}
