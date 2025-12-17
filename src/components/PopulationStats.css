@@ -71,6 +71,55 @@
   text-transform: uppercase;
 }
 
+/* Survival Rate */
+.survival-rate {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.rate-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+}
+
+.rate-value {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.rate-value.good {
+  color: #22c55e;
+}
+
+.rate-value.poor {
+  color: #f97316;
+}
+
+.rate-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rate-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.rate-fill.good {
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+
+.rate-fill.poor {
+  background: linear-gradient(90deg, #f97316, #fb923c);
+}
+
 .average-traits h3 {
   margin: 0 0 8px 0;
   font-size: 1rem;

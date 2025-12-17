@@ -40,6 +40,7 @@ export function PopulationStats({ bunnies, generation, history, totalLost }: Pop
 
   // Calculate total bunnies that have ever lived
   const totalBorn = aliveBunnies.length + totalLost;
+  const survivalRate = totalBorn > 0 ? Math.round((aliveBunnies.length / totalBorn) * 100) : 100;
   
   return (
     <motion.div 
@@ -57,14 +58,29 @@ export function PopulationStats({ bunnies, generation, history, totalLost }: Pop
       
       <div className="stats-overview">
         <div className="stat-item">
-          <span className="stat-icon">🐇</span>
-          <span className="stat-value">{aliveBunnies.length}</span>
-          <span className="stat-label">Alive</span>
+          <span className="stat-icon">🐣</span>
+          <span className="stat-value">{totalBorn}</span>
+          <span className="stat-label">Total Born</span>
         </div>
         <div className="stat-item">
           <span className="stat-icon">😇</span>
           <span className="stat-value">{totalLost}</span>
           <span className="stat-label">Total Lost</span>
+        </div>
+      </div>
+      
+      <div className="survival-rate">
+        <div className="rate-label">
+          <span>Survival Rate</span>
+          <span className={`rate-value ${survivalRate >= 50 ? 'good' : 'poor'}`}>{survivalRate}%</span>
+        </div>
+        <div className="rate-bar">
+          <motion.div 
+            className={`rate-fill ${survivalRate >= 50 ? 'good' : 'poor'}`}
+            initial={{ width: 0 }}
+            animate={{ width: `${survivalRate}%` }}
+            transition={{ duration: 0.8 }}
+          />
         </div>
       </div>
       
