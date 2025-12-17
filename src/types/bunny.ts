@@ -18,8 +18,7 @@ export type EnvironmentEvent =
   | 'harsh_winter'
   | 'wolf_pack'
   | 'eagle_attack'
-  | 'food_shortage'
-  | 'mild_year';
+  | 'food_shortage';
 
 export interface EnvironmentEventInfo {
   id: EnvironmentEvent;
@@ -62,14 +61,6 @@ export const ENVIRONMENT_EVENTS: EnvironmentEventInfo[] = [
     emoji: '🥬',
     dangerousTrait: 'size',
     traitDirection: 'high'
-  },
-  {
-    id: 'mild_year',
-    name: 'Mild Year',
-    description: 'A peaceful year! Most bunnies will be just fine.',
-    emoji: '☀️',
-    dangerousTrait: 'furThickness',
-    traitDirection: 'low'
   }
 ];
 

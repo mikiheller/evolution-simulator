@@ -7,9 +7,18 @@ interface PopulationStatsProps {
   bunnies: Bunny[];
   generation: number;
   history: PopulationStatsType[];
+  totalLost: number;
 }
 
-export function PopulationStats({ bunnies, generation, history }: PopulationStatsProps) {
+// Trait colors for the line chart
+const TRAIT_COLORS = {
+  furThickness: '#60a5fa', // blue
+  speed: '#fbbf24',        // yellow
+  size: '#34d399',         // green
+  camouflage: '#f472b6'    // pink
+};
+
+export function PopulationStats({ bunnies, generation, history, totalLost }: PopulationStatsProps) {
   const aliveBunnies = bunnies.filter(b => b.isAlive);
   const averageTraits = calculateAverageTraits(aliveBunnies);
   
@@ -28,6 +37,9 @@ export function PopulationStats({ bunnies, generation, history }: PopulationStat
       <span className="change-indicator down">↓{Math.abs(diff)}</span>
     );
   };
+
+  // Calculate total bunnies that have ever lived
+  const totalBorn = aliveBunnies.length + totalLost;
   
   return (
     <motion.div 
@@ -51,8 +63,8 @@ export function PopulationStats({ bunnies, generation, history }: PopulationStat
         </div>
         <div className="stat-item">
           <span className="stat-icon">😇</span>
-          <span className="stat-value">{bunnies.length - aliveBunnies.length}</span>
-          <span className="stat-label">Lost</span>
+          <span className="stat-value">{totalLost}</span>
+          <span className="stat-label">Total Lost</span>
         </div>
       </div>
       
@@ -100,29 +112,120 @@ export function PopulationStats({ bunnies, generation, history }: PopulationStat
       {history.length > 0 && (
         <div className="evolution-history">
           <h3>📈 Evolution Over Time</h3>
-          <div className="history-chart">
+          
+          {/* Horizontal bar chart - wrapping rows */}
+          <div className="history-grid">
             {history.map((stats, i) => (
-              <div key={i} className="history-bar-group">
-                <div className="history-bars">
+              <div key={i} className="history-row">
+                <span className="history-gen-label">Gen {stats.generation}</span>
+                <div className="history-bars-horizontal">
                   {traits.map(trait => (
-                    <div 
-                      key={trait}
-                      className="history-bar"
-                      style={{ 
-                        height: `${stats.averageTraits[trait]}%`,
-                        backgroundColor: getTraitRating(stats.averageTraits[trait]).color
-                      }}
-                      title={`${getTraitName(trait)}: ${stats.averageTraits[trait]}`}
-                    />
+                    <div key={trait} className="history-bar-row">
+                      <span className="bar-emoji">{getTraitEmoji(trait)}</span>
+                      <div className="bar-track">
+                        <motion.div 
+                          className="bar-fill"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${stats.averageTraits[trait]}%` }}
+                          transition={{ duration: 0.5, delay: i * 0.05 }}
+                          style={{ backgroundColor: TRAIT_COLORS[trait] }}
+                        />
+                      </div>
+                      <span className="bar-value">{stats.averageTraits[trait]}</span>
+                    </div>
                   ))}
                 </div>
-                <span className="history-label">Gen {stats.generation}</span>
               </div>
             ))}
           </div>
+          
+          {/* Line chart */}
+          {history.length >= 2 && (
+            <div className="line-chart-container">
+              <h4>📊 Trait Trends</h4>
+              <div className="line-chart">
+                <svg viewBox="0 0 300 150" className="chart-svg">
+                  {/* Grid lines */}
+                  <line x1="40" y1="10" x2="40" y2="120" stroke="rgba(255,255,255,0.2)" />
+                  <line x1="40" y1="120" x2="290" y2="120" stroke="rgba(255,255,255,0.2)" />
+                  <line x1="40" y1="65" x2="290" y2="65" stroke="rgba(255,255,255,0.1)" strokeDasharray="4" />
+                  <line x1="40" y1="10" x2="290" y2="10" stroke="rgba(255,255,255,0.1)" strokeDasharray="4" />
+                  
+                  {/* Y-axis labels */}
+                  <text x="35" y="123" fill="rgba(255,255,255,0.5)" fontSize="8" textAnchor="end">0</text>
+                  <text x="35" y="68" fill="rgba(255,255,255,0.5)" fontSize="8" textAnchor="end">50</text>
+                  <text x="35" y="14" fill="rgba(255,255,255,0.5)" fontSize="8" textAnchor="end">100</text>
+                  
+                  {/* Lines for each trait */}
+                  {traits.map(trait => {
+                    const points = history.map((stats, i) => {
+                      const x = 40 + (i / (history.length - 1)) * 250;
+                      const y = 120 - (stats.averageTraits[trait] / 100) * 110;
+                      return `${x},${y}`;
+                    }).join(' ');
+                    
+                    return (
+                      <polyline
+                        key={trait}
+                        points={points}
+                        fill="none"
+                        stroke={TRAIT_COLORS[trait]}
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    );
+                  })}
+                  
+                  {/* Dots at each data point */}
+                  {traits.map(trait => (
+                    history.map((stats, i) => {
+                      const x = 40 + (i / (history.length - 1)) * 250;
+                      const y = 120 - (stats.averageTraits[trait] / 100) * 110;
+                      return (
+                        <circle
+                          key={`${trait}-${i}`}
+                          cx={x}
+                          cy={y}
+                          r="3"
+                          fill={TRAIT_COLORS[trait]}
+                        />
+                      );
+                    })
+                  ))}
+                  
+                  {/* X-axis generation labels */}
+                  {history.map((stats, i) => {
+                    const x = 40 + (i / (history.length - 1)) * 250;
+                    return (
+                      <text
+                        key={i}
+                        x={x}
+                        y="135"
+                        fill="rgba(255,255,255,0.6)"
+                        fontSize="8"
+                        textAnchor="middle"
+                      >
+                        {stats.generation}
+                      </text>
+                    );
+                  })}
+                </svg>
+              </div>
+              
+              {/* Legend */}
+              <div className="chart-legend">
+                {traits.map(trait => (
+                  <div key={trait} className="legend-item">
+                    <span className="legend-color" style={{ backgroundColor: TRAIT_COLORS[trait] }} />
+                    <span className="legend-label">{getTraitEmoji(trait)} {getTraitName(trait)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </motion.div>
   );
 }
-

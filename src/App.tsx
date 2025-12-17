@@ -17,8 +17,8 @@ function App() {
   const [phase, setPhase] = useState<GamePhase>('intro');
   const [currentEvent, setCurrentEvent] = useState<EnvironmentEvent | null>(null);
   const [history, setHistory] = useState<PopulationStatsType[]>([]);
-  const [selectedBunny, setSelectedBunny] = useState<string | null>(null);
   const [message, setMessage] = useState<string>('');
+  const [totalLost, setTotalLost] = useState(0);
 
   // Start the game
   const startGame = useCallback(() => {
@@ -26,6 +26,7 @@ function App() {
     setBunnies(initialPopulation);
     setGeneration(1);
     setHistory([]);
+    setTotalLost(0);
     setPhase('select_event');
     setMessage('Meet your bunny family! Choose what challenge they will face this year.');
   }, []);
@@ -42,16 +43,8 @@ function App() {
     // TUNED FOR KIDS: Very strong, nearly deterministic selection!
     setTimeout(() => {
       setBunnies(currentBunnies => {
-        // Sort bunnies by the relevant trait to find the "cutoff"
-        const aliveBunnies = currentBunnies.filter(b => b.isAlive);
-        
         const updatedBunnies = currentBunnies.map(bunny => {
           if (!bunny.isAlive) return bunny;
-          
-          // Mild year - almost everyone survives
-          if (eventId === 'mild_year') {
-            return { ...bunny, isAlive: Math.random() < 0.95 };
-          }
           
           // Get trait value (flip for "high is bad" events)
           let effectiveTrait = bunny.traits[event.dangerousTrait];
@@ -71,6 +64,12 @@ function App() {
           
           return { ...bunny, isAlive: Math.random() < survivalChance };
         });
+        
+        // Count deaths and update total
+        const deaths = updatedBunnies.filter(b => !b.isAlive).length - currentBunnies.filter(b => !b.isAlive).length;
+        if (deaths > 0) {
+          setTotalLost(prev => prev + deaths);
+        }
         
         return updatedBunnies;
       });
@@ -180,6 +179,7 @@ function App() {
               bunnies={bunnies} 
               generation={generation}
               history={history}
+              totalLost={totalLost}
             />
           </aside>
 
@@ -225,8 +225,6 @@ function App() {
                     <BunnyCard
                       key={bunny.id}
                       bunny={bunny}
-                      isSelected={selectedBunny === bunny.id}
-                      onClick={() => setSelectedBunny(selectedBunny === bunny.id ? null : bunny.id)}
                     />
                   ))}
                 </AnimatePresence>
@@ -241,7 +239,7 @@ function App() {
                         <BunnyCard
                           key={bunny.id}
                           bunny={bunny}
-                          showDetails={false}
+                          showDetails={true}
                         />
                       ))}
                     </AnimatePresence>

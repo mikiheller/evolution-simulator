@@ -167,6 +167,7 @@
   font-weight: 600;
 }
 
+/* Evolution History - Horizontal bars that wrap */
 .evolution-history {
   margin-top: 24px;
   padding-top: 20px;
@@ -178,39 +179,133 @@
   font-size: 1rem;
 }
 
-.history-chart {
-  display: flex;
-  gap: 8px;
-  align-items: flex-end;
-  height: 80px;
-  overflow-x: auto;
-  padding-bottom: 24px;
-}
-
-.history-bar-group {
+.history-grid {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.history-row {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.history-gen-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 8px;
+}
+
+.history-bars-horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.history-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bar-emoji {
+  font-size: 0.9rem;
+  width: 20px;
+}
+
+.bar-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.bar-value {
+  font-size: 0.7rem;
+  font-weight: 600;
+  width: 24px;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Line Chart */
+.line-chart-container {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.line-chart-container h4 {
+  margin: 0 0 12px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.line-chart {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.chart-svg {
+  width: 100%;
+  height: auto;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
   align-items: center;
   gap: 4px;
-  min-width: 50px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.history-bars {
-  display: flex;
-  gap: 2px;
-  align-items: flex-end;
-  height: 60px;
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
 }
 
-.history-bar {
-  width: 8px;
-  border-radius: 4px 4px 0 0;
-  transition: height 0.3s ease;
-}
-
-.history-label {
-  font-size: 0.6rem;
-  opacity: 0.6;
+.legend-label {
   white-space: nowrap;
 }
 
+/* Scrollbar styling for history */
+.history-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history-grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.history-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.history-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

@@ -5,8 +5,6 @@ import './BunnyCard.css';
 
 interface BunnyCardProps {
   bunny: Bunny;
-  isSelected?: boolean;
-  onClick?: () => void;
   showDetails?: boolean;
 }
 
@@ -56,18 +54,15 @@ function TraitBar({ trait, value }: { trait: keyof BunnyTraits; value: number })
   );
 }
 
-export function BunnyCard({ bunny, isSelected, onClick, showDetails = true }: BunnyCardProps) {
+export function BunnyCard({ bunny, showDetails = true }: BunnyCardProps) {
   const style = getBunnyStyle(bunny.traits);
   
   return (
     <motion.div 
-      className={`bunny-card ${isSelected ? 'selected' : ''} ${!bunny.isAlive ? 'dead' : ''}`}
-      onClick={onClick}
+      className={`bunny-card ${!bunny.isAlive ? 'dead' : ''}`}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0, opacity: 0 }}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
       layout
     >
       <div className="bunny-avatar-container">
