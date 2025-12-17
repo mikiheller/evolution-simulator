@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { Bunny, EnvironmentEvent, PopulationStats as PopulationStatsType } from './types/bunny';
 import { ENVIRONMENT_EVENTS } from './types/bunny';
-import { createInitialPopulation, createOffspring, calculateAverageTraits } from './utils/bunnyUtils';
+import { createInitialPopulation, createOffspring, calculateAverageTraits, resetUsedNames } from './utils/bunnyUtils';
 import { BunnyCard } from './components/BunnyCard';
 import { PopulationStats } from './components/PopulationStats';
 import { EnvironmentSelector } from './components/EnvironmentSelector';
@@ -23,6 +23,7 @@ function App() {
 
   // Start the game
   const startGame = useCallback(() => {
+    resetUsedNames(); // Reset name pool for new game
     const initialPopulation = createInitialPopulation(8);
     setBunnies(initialPopulation);
     setGeneration(1);

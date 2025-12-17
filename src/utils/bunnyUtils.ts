@@ -1,6 +1,6 @@
 import type { Bunny, BunnyTraits } from '../types/bunny';
 
-// Cute bunny names for kids
+// Cute bunny names for kids - expanded list to reduce duplicates
 const BUNNY_NAMES = [
   'Snowball', 'Frosty', 'Fluffy', 'Cotton', 'Marshmallow',
   'Blizzard', 'Ice', 'Powder', 'Crystal', 'Winter',
@@ -9,10 +9,23 @@ const BUNNY_NAMES = [
   'Pepper', 'Ginger', 'Cocoa', 'Peanut', 'Cookie',
   'Maple', 'Honey', 'Berry', 'Daisy', 'Luna',
   'Star', 'Moon', 'Sky', 'Storm', 'Thunder',
-  'Willow', 'Sage', 'Basil', 'Mint', 'Rosie'
+  'Willow', 'Sage', 'Basil', 'Mint', 'Rosie',
+  'Cinnamon', 'Nutmeg', 'Caramel', 'Mocha', 'Latte',
+  'Sparkle', 'Twinkle', 'Glitter', 'Shimmer', 'Dash',
+  'Bounce', 'Zippy', 'Flash', 'Bolt', 'Zoom',
+  'Pebble', 'Rocky', 'Sandy', 'Dusty', 'Misty',
+  'Echo', 'Whisper', 'Shadow', 'Ghost', 'Spirit',
+  'Sunny', 'Breeze', 'River', 'Brook', 'Meadow',
+  'Acorn', 'Chestnut', 'Hazel', 'Olive', 'Ivy'
 ];
 
 let bunnyCounter = 0;
+let usedNames: Set<string> = new Set();
+
+// Reset used names (call when starting new game)
+export function resetUsedNames(): void {
+  usedNames = new Set();
+}
 
 // Generate a random trait value with a bell curve distribution around a mean
 function randomTrait(mean: number = 50, variance: number = 20): number {
@@ -31,9 +44,20 @@ function generateId(): string {
   return `bunny-${Date.now()}-${bunnyCounter++}`;
 }
 
-// Get a random name
+// Get a unique random name
 function getRandomName(): string {
-  return BUNNY_NAMES[Math.floor(Math.random() * BUNNY_NAMES.length)];
+  // Get available names (not yet used)
+  const availableNames = BUNNY_NAMES.filter(name => !usedNames.has(name));
+  
+  // If all names used, reset and start fresh
+  if (availableNames.length === 0) {
+    usedNames.clear();
+    return getRandomName();
+  }
+  
+  const name = availableNames[Math.floor(Math.random() * availableNames.length)];
+  usedNames.add(name);
+  return name;
 }
 
 // Create a new random bunny
