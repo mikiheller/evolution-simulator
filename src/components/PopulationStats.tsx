@@ -113,28 +113,24 @@ export function PopulationStats({ bunnies, generation, history, totalLost }: Pop
         <div className="evolution-history">
           <h3>📈 Evolution Over Time</h3>
           
-          {/* Horizontal bar chart - wrapping rows */}
-          <div className="history-grid">
+          {/* Compact horizontal mini-bars */}
+          <div className="history-grid-compact">
             {history.map((stats, i) => (
-              <div key={i} className="history-row">
-                <span className="history-gen-label">Gen {stats.generation}</span>
-                <div className="history-bars-horizontal">
+              <div key={i} className="history-bar-group-compact">
+                <div className="history-mini-bars">
                   {traits.map(trait => (
-                    <div key={trait} className="history-bar-row">
-                      <span className="bar-emoji">{getTraitEmoji(trait)}</span>
-                      <div className="bar-track">
-                        <motion.div 
-                          className="bar-fill"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${stats.averageTraits[trait]}%` }}
-                          transition={{ duration: 0.5, delay: i * 0.05 }}
-                          style={{ backgroundColor: TRAIT_COLORS[trait] }}
-                        />
-                      </div>
-                      <span className="bar-value">{stats.averageTraits[trait]}</span>
-                    </div>
+                    <div 
+                      key={trait}
+                      className="history-mini-bar"
+                      style={{ 
+                        width: `${stats.averageTraits[trait]}%`,
+                        backgroundColor: TRAIT_COLORS[trait]
+                      }}
+                      title={`${getTraitName(trait)}: ${stats.averageTraits[trait]}`}
+                    />
                   ))}
                 </div>
+                <span className="history-label-compact">Gen {stats.generation}</span>
               </div>
             ))}
           </div>
