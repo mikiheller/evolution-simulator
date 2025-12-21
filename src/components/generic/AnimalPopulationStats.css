@@ -1,0 +1,281 @@
+.animal-population-stats {
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid;
+}
+
+.animal-stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.animal-stats-header h2 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.animal-generation-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+}
+
+.animal-gen-label {
+  font-size: 0.7rem;
+  opacity: 0.9;
+}
+
+.animal-gen-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.animal-stats-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.animal-stat-item {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid;
+}
+
+.animal-stat-icon {
+  font-size: 1.5rem;
+}
+
+.animal-stat-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.animal-stat-label {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.animal-survival-rate {
+  margin-bottom: 20px;
+}
+
+.animal-rate-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.animal-rate-value {
+  font-weight: bold;
+}
+
+.animal-rate-value.good {
+  color: #22c55e;
+}
+
+.animal-rate-value.poor {
+  color: #ef4444;
+}
+
+.animal-rate-bar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid;
+}
+
+.animal-rate-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.8s ease;
+}
+
+.animal-rate-fill.good {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.animal-rate-fill.poor {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.animal-average-traits h3 {
+  font-size: 1rem;
+  margin: 0 0 4px 0;
+}
+
+.animal-traits-explanation {
+  font-size: 0.75rem;
+  margin: 0 0 12px 0;
+  opacity: 0.8;
+}
+
+.animal-average-trait {
+  margin-bottom: 12px;
+}
+
+.animal-trait-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.animal-trait-icon {
+  font-size: 0.9rem;
+}
+
+.animal-trait-title {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.animal-trait-hint {
+  font-size: 0.65rem;
+  opacity: 0.7;
+}
+
+.animal-change-indicator {
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.animal-change-indicator.up {
+  color: #22c55e;
+}
+
+.animal-change-indicator.down {
+  color: #ef4444;
+}
+
+.animal-trait-bar-container {
+  position: relative;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  border: 1px solid;
+  margin-bottom: 4px;
+}
+
+.animal-trait-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.animal-trait-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+}
+
+.animal-trait-value-display {
+  font-weight: bold;
+}
+
+.animal-trait-rating {
+  font-weight: 500;
+}
+
+.animal-evolution-history {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.animal-evolution-history h3 {
+  font-size: 1rem;
+  margin: 0 0 12px 0;
+}
+
+.animal-history-grid-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.animal-history-bar-group-compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.animal-history-mini-bars {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.animal-history-mini-bar {
+  height: 4px;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.animal-history-label-compact {
+  font-size: 0.7rem;
+  min-width: 40px;
+  text-align: right;
+}
+
+.animal-line-chart-container {
+  margin-top: 16px;
+}
+
+.animal-line-chart-container h4 {
+  font-size: 0.9rem;
+  margin: 0 0 8px 0;
+}
+
+.animal-line-chart {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid;
+}
+
+.animal-chart-svg {
+  width: 100%;
+  height: auto;
+}
+
+.animal-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.animal-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.animal-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.animal-legend-label {
+  font-size: 0.65rem;
+}

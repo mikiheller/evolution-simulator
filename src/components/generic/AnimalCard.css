@@ -1,0 +1,117 @@
+.animal-card {
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.animal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.animal-card.dead {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%) !important;
+  border-color: #d4d4d4 !important;
+  opacity: 0.7;
+}
+
+.animal-avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  margin-bottom: 12px;
+}
+
+.animal-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.animal-halo {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+.animal-info {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.animal-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.animal-generation {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.animal-traits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.animal-trait-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.animal-trait-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 110px;
+}
+
+.animal-trait-emoji {
+  font-size: 0.9rem;
+}
+
+.animal-trait-name {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.animal-trait-meter {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid;
+}
+
+.animal-trait-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.animal-trait-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: right;
+}

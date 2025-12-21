@@ -1,0 +1,262 @@
+.bee-card {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+  border: 2px solid #fbbf24;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.bee-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(251, 191, 36, 0.3);
+}
+
+.bee-card.dead {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+  border-color: #d4d4d4;
+  opacity: 0.7;
+}
+
+.bee-avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  margin-bottom: 12px;
+}
+
+.bee-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Wings */
+.bee-wing {
+  position: absolute;
+  width: 25px;
+  height: 35px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(200, 220, 255, 0.6) 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  border: 1px solid rgba(100, 150, 200, 0.3);
+  top: -15px;
+  z-index: 1;
+}
+
+.bee-wing.left {
+  left: -5px;
+  transform-origin: bottom right;
+}
+
+.bee-wing.right {
+  right: -5px;
+  transform-origin: bottom left;
+}
+
+/* Body */
+.bee-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50% 45% 45%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Head */
+.bee-head {
+  position: absolute;
+  width: 60%;
+  height: 50%;
+  background: #1a1a1a;
+  border-radius: 50%;
+  top: -25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* Antennae */
+.bee-antenna {
+  position: absolute;
+  width: 2px;
+  height: 12px;
+  background: #1a1a1a;
+  top: -10px;
+  border-radius: 2px;
+}
+
+.bee-antenna.left {
+  left: 30%;
+  transform: rotate(-20deg);
+}
+
+.bee-antenna.right {
+  right: 30%;
+  transform: rotate(20deg);
+}
+
+.bee-antenna::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -1px;
+  width: 4px;
+  height: 4px;
+  background: #1a1a1a;
+  border-radius: 50%;
+}
+
+/* Eyes */
+.bee-eye {
+  width: 8px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  position: relative;
+}
+
+.bee-eye::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bee-eye.left {
+  margin-right: 2px;
+}
+
+.bee-eye.right {
+  margin-left: 2px;
+}
+
+/* Stinger */
+.bee-stinger {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 8px solid #1a1a1a;
+}
+
+/* Pollen baskets */
+.bee-pollen {
+  position: absolute;
+  background: radial-gradient(circle, #fbbf24 0%, #f59e0b 100%);
+  border-radius: 50%;
+  bottom: 5px;
+  z-index: 3;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.bee-pollen.left {
+  left: -8px;
+}
+
+.bee-pollen.right {
+  right: -8px;
+}
+
+/* Halo for dead bees */
+.bee-halo {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* Bee info */
+.bee-info {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.bee-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #78350f;
+  margin: 0 0 4px 0;
+}
+
+.bee-generation {
+  font-size: 0.75rem;
+  color: #92400e;
+  background: #fef3c7;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+/* Traits */
+.bee-traits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bee-trait-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bee-trait-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 110px;
+}
+
+.bee-trait-emoji {
+  font-size: 0.9rem;
+}
+
+.bee-trait-name {
+  font-size: 0.75rem;
+  color: #78350f;
+}
+
+.bee-trait-meter {
+  flex: 1;
+  height: 8px;
+  background: #fef3c7;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #fbbf24;
+}
+
+.bee-trait-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.bee-trait-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: right;
+}

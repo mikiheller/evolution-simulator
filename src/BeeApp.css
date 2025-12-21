@@ -1,0 +1,317 @@
+.bee-app {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fef9c3 0%, #fef3c7 50%, #fed7aa 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Honeycomb background pattern */
+.honeycomb-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zm0 34L0 84V50l28-16 28 16v34l-28 16z' fill='%23f59e0b' fill-opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 56px 100px;
+}
+
+.bee-app-header {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.bee-back-button {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.bee-back-button:hover {
+  background: #d97706;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.bee-app-header h1 {
+  font-size: 2.5rem;
+  color: #78350f;
+  margin: 0;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.bee-subtitle {
+  color: #92400e;
+  font-size: 1.2rem;
+  margin: 8px 0 0 0;
+}
+
+/* Intro screen */
+.bee-intro-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  padding: 20px;
+}
+
+.bee-intro-content {
+  text-align: center;
+  max-width: 800px;
+}
+
+.intro-bee {
+  font-size: 6rem;
+  margin-bottom: 20px;
+  animation: beeBounce 2s ease-in-out infinite;
+}
+
+@keyframes beeBounce {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  25% { transform: translateY(-15px) rotate(5deg); }
+  50% { transform: translateY(0) rotate(-5deg); }
+  75% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.bee-intro-content h2 {
+  font-size: 2rem;
+  color: #78350f;
+  margin: 0 0 16px 0;
+}
+
+.bee-intro-tagline {
+  font-size: 1.2rem;
+  color: #92400e;
+  margin: 0 0 32px 0;
+}
+
+.bee-vocab-section {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.2);
+  border: 2px solid #fbbf24;
+}
+
+.bee-vocab-section h3 {
+  font-size: 1.4rem;
+  color: #78350f;
+  margin: 0 0 20px 0;
+}
+
+.bee-vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.bee-vocab-card {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  border: 1px solid #fbbf24;
+}
+
+.bee-vocab-emoji {
+  font-size: 2rem;
+}
+
+.bee-vocab-term {
+  font-weight: 600;
+  color: #78350f;
+  font-size: 1rem;
+}
+
+.bee-vocab-def {
+  font-size: 0.85rem;
+  color: #92400e;
+  line-height: 1.4;
+}
+
+.bee-start-button {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+  transition: all 0.3s ease;
+}
+
+.bee-start-button:hover {
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+}
+
+/* Game container */
+.bee-game-container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .bee-game-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bee-sidebar {
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+.bee-main-content {
+  min-height: 500px;
+}
+
+.bee-message-banner {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.bee-event-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+  border: 2px solid #fbbf24;
+}
+
+.bee-event-banner-emoji {
+  font-size: 2rem;
+}
+
+.bee-event-banner-text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #78350f;
+}
+
+/* Bees section */
+.bees-section {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.15);
+  border: 2px solid #fbbf24;
+}
+
+.bee-section-title {
+  font-size: 1.5rem;
+  color: #78350f;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.bee-section-subtitle {
+  font-size: 1.2rem;
+  color: #92400e;
+  margin: 24px 0 16px 0;
+  text-align: center;
+}
+
+.bees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.bees-grid.dead-bees {
+  opacity: 0.7;
+}
+
+/* Results actions */
+.bee-results-actions {
+  text-align: center;
+  margin-top: 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-radius: 16px;
+  border: 2px solid #fbbf24;
+}
+
+.bee-results-summary {
+  font-size: 1.1rem;
+  color: #78350f;
+  margin: 0 0 16px 0;
+}
+
+.bee-next-button {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  transition: all 0.3s ease;
+}
+
+.bee-next-button:hover {
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .bee-app-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .bee-back-button {
+    position: static;
+    margin-bottom: 16px;
+  }
+  
+  .intro-bee {
+    font-size: 4rem;
+  }
+  
+  .bee-intro-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .bees-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,311 @@
+.elephant-population-stats {
+  background: linear-gradient(135deg, rgba(255, 248, 240, 0.95) 0%, rgba(255, 243, 224, 0.9) 100%);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(139, 90, 43, 0.15);
+}
+
+.elephant-stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.elephant-stats-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #5d4037;
+  font-family: 'Nunito', 'Comic Sans MS', cursive;
+}
+
+.elephant-generation-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
+  border-radius: 12px;
+  padding: 8px 16px;
+}
+
+.elephant-gen-label {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.elephant-gen-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+}
+
+.elephant-stats-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.elephant-stat-item {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.elephant-stat-icon {
+  font-size: 1.2rem;
+}
+
+.elephant-stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #5d4037;
+}
+
+.elephant-stat-label {
+  font-size: 0.75rem;
+  color: #8d6e63;
+  text-transform: uppercase;
+}
+
+.elephant-survival-rate {
+  margin-bottom: 20px;
+}
+
+.elephant-rate-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: #5d4037;
+}
+
+.elephant-rate-value {
+  font-weight: 700;
+}
+
+.elephant-rate-value.good {
+  color: #22c55e;
+}
+
+.elephant-rate-value.poor {
+  color: #ef4444;
+}
+
+.elephant-rate-bar {
+  height: 10px;
+  background: rgba(139, 90, 43, 0.15);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.elephant-rate-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.8s ease;
+}
+
+.elephant-rate-fill.good {
+  background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
+}
+
+.elephant-rate-fill.poor {
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+}
+
+.elephant-average-traits h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: #5d4037;
+}
+
+.elephant-traits-explanation {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  color: #8d6e63;
+}
+
+.elephant-average-trait {
+  margin-bottom: 12px;
+}
+
+.elephant-trait-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.elephant-trait-icon {
+  font-size: 0.9rem;
+}
+
+.elephant-trait-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #5d4037;
+}
+
+.elephant-trait-hint {
+  font-size: 0.65rem;
+  color: #a78bfa;
+  font-style: italic;
+}
+
+.elephant-change-indicator {
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-left: auto;
+}
+
+.elephant-change-indicator.up {
+  color: #22c55e;
+}
+
+.elephant-change-indicator.down {
+  color: #ef4444;
+}
+
+.elephant-trait-bar-container {
+  position: relative;
+  height: 8px;
+  background: rgba(139, 90, 43, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.elephant-trait-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.elephant-trait-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.elephant-marker {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(139, 90, 43, 0.2);
+}
+
+.elephant-trait-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.elephant-trait-value-display {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.elephant-trait-rating {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* Evolution History */
+.elephant-evolution-history {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(139, 90, 43, 0.15);
+}
+
+.elephant-evolution-history h3 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  color: #5d4037;
+}
+
+.elephant-history-grid-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.elephant-history-bar-group-compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.elephant-history-mini-bars {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.elephant-history-mini-bar {
+  height: 4px;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.elephant-history-label-compact {
+  font-size: 0.7rem;
+  color: #8d6e63;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Line Chart */
+.elephant-line-chart-container {
+  margin-top: 16px;
+}
+
+.elephant-line-chart-container h4 {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  color: #5d4037;
+}
+
+.elephant-line-chart {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.elephant-chart-svg {
+  width: 100%;
+  height: auto;
+}
+
+.elephant-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.elephant-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.elephant-legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.elephant-legend-label {
+  font-size: 0.65rem;
+  color: #5d4037;
+}

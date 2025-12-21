@@ -1,0 +1,73 @@
+.elephant-environment-selector {
+  background: linear-gradient(135deg, rgba(255, 248, 240, 0.95) 0%, rgba(255, 243, 224, 0.9) 100%);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(139, 90, 43, 0.15);
+}
+
+.elephant-selector-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.elephant-selector-header h2 {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+  color: #5d4037;
+  font-family: 'Nunito', 'Comic Sans MS', cursive;
+}
+
+.elephant-selector-header p {
+  margin: 0;
+  color: #8d6e63;
+  font-size: 1rem;
+}
+
+.elephant-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.elephant-event-card {
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+  border: 3px solid transparent;
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.elephant-event-card:hover:not(.disabled) {
+  border-color: #ff9800;
+  box-shadow: 0 8px 24px rgba(255, 152, 0, 0.3);
+}
+
+.elephant-event-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.elephant-event-emoji {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.elephant-event-name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5d4037;
+}
+
+.elephant-event-description {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #8d6e63;
+  line-height: 1.4;
+}
