@@ -206,7 +206,7 @@ export function BunnyApp({ onBack }: BunnyAppProps) {
                 <div className="bunny-vocab-card">
                   <span className="bunny-vocab-emoji">🦎</span>
                   <span className="bunny-vocab-term">Adaptation</span>
-                  <span className="bunny-vocab-def">A trait that helps a bunny survive - like white fur to hide in the snow!</span>
+                  <span className="bunny-vocab-def">The process where species develop traits that help them survive better in their environment</span>
                 </div>
                 
                 <div className="bunny-vocab-card">

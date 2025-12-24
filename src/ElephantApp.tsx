@@ -206,7 +206,7 @@ export function ElephantApp({ onBack }: ElephantAppProps) {
                 <div className="elephant-vocab-card">
                   <span className="elephant-vocab-emoji">🦎</span>
                   <span className="elephant-vocab-term">Adaptation</span>
-                  <span className="elephant-vocab-def">A trait that helps an elephant survive - like big ears to stay cool in the heat!</span>
+                  <span className="elephant-vocab-def">The process where species develop traits that help them survive better in their environment</span>
                 </div>
                 
                 <div className="elephant-vocab-card">

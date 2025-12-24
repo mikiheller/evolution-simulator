@@ -206,7 +206,7 @@ export function BeeApp({ onBack }: BeeAppProps) {
                 <div className="bee-vocab-card">
                   <span className="bee-vocab-emoji">🦎</span>
                   <span className="bee-vocab-term">Adaptation</span>
-                  <span className="bee-vocab-def">A trait that helps a bee survive in its environment - like thick fur for cold weather!</span>
+                  <span className="bee-vocab-def">The process where species develop traits that help them survive better in their environment</span>
                 </div>
                 
                 <div className="bee-vocab-card">

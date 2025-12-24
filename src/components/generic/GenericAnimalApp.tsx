@@ -216,7 +216,7 @@ export function GenericAnimalApp({ config, onBack }: GenericAnimalAppProps) {
                 <div className="generic-vocab-card" style={{ background: theme.cardBg, borderColor: theme.cardBorder }}>
                   <span className="generic-vocab-emoji">🦎</span>
                   <span className="generic-vocab-term" style={{ color: theme.secondary }}>Adaptation</span>
-                  <span className="generic-vocab-def">A trait that helps an animal survive in its environment</span>
+                  <span className="generic-vocab-def">The process where species develop traits that help them survive better in their environment</span>
                 </div>
                 
                 <div className="generic-vocab-card" style={{ background: theme.cardBg, borderColor: theme.cardBorder }}>
